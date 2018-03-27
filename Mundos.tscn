@@ -1,0 +1,99 @@
+[gd_scene load_steps=6 format=1]
+
+[ext_resource path="res://Cenário.jpg" type="Texture" id=1]
+[ext_resource path="res://Voltar.tres" type="DynamicFont" id=2]
+[ext_resource path="res://PrimeiraFonte.tres" type="DynamicFont" id=3]
+
+[sub_resource type="GDScript" id=1]
+
+script/source = "extends Button
+
+func _on_Voltar_pressed():
+	get_tree().change_scene(\"Panel.tscn\")
+"
+
+[sub_resource type="GDScript" id=2]
+
+script/source = "extends Button
+
+func _on_Mundo_1_pressed():
+	
+	if(global.partidaInicial):
+		global.fase = 1
+	else:
+		salve_game.loadGame(\"gameHistorico\")
+		global.partidaInicial = false
+		print(global.fase)
+		#global.fase = 1
+	
+	global.readFile(global.fase)
+	global.gerarImage()
+	get_tree().change_scene(\"Jogo.tscn\")	
+"
+
+[node name="Panel" type="Panel"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 1027.0
+margin/bottom = 598.0
+
+[node name="TextureFrame" type="TextureFrame" parent="."]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 1025.0
+margin/bottom = 603.0
+texture = ExtResource( 1 )
+expand = true
+stretch_mode = 0
+
+[node name="Voltar" type="Button" parent="TextureFrame"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 353.0
+margin/top = 489.0
+margin/right = 676.0
+margin/bottom = 563.0
+custom_fonts/font = ExtResource( 2 )
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "Voltar"
+flat = false
+script/script = SubResource( 1 )
+
+[node name="Mundo 1" type="Button" parent="TextureFrame"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 155.0
+margin/top = 93.0
+margin/right = 917.0
+margin/bottom = 169.0
+custom_fonts/font = ExtResource( 3 )
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "Turma da Monica"
+flat = false
+script/script = SubResource( 2 )
+
+[connection signal="pressed" from="TextureFrame/Voltar" to="TextureFrame/Voltar" method="_on_Voltar_pressed"]
+
+[connection signal="pressed" from="TextureFrame/Mundo 1" to="TextureFrame/Mundo 1" method="_on_Mundo_1_pressed"]
+
+

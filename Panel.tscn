@@ -1,0 +1,147 @@
+[gd_scene load_steps=9 format=1]
+
+[ext_resource path="res://Cenário.jpg" type="Texture" id=1]
+[ext_resource path="res://PrimeiraFonte.tres" type="DynamicFont" id=2]
+
+[sub_resource type="CanvasItemShader" id=1]
+
+_code = {
+"fragment": "",
+"fragment_ofs": 0,
+"light": "",
+"light_ofs": 0,
+"vertex": "",
+"vertex_ofs": 0
+}
+
+[sub_resource type="CanvasItemMaterial" id=2]
+
+shader/shader = SubResource( 1 )
+shader/shading_mode = 0
+
+[sub_resource type="StyleBoxEmpty" id=3]
+
+content_margin/left = -1.0
+content_margin/right = -1.0
+content_margin/top = -1.0
+content_margin/bottom = -1.0
+
+[sub_resource type="GDScript" id=4]
+
+script/source = "extends Button
+
+func _on_ButtonStart_pressed():
+	get_tree().change_scene(\"Mundos.tscn\")
+"
+
+[sub_resource type="LargeTexture" id=5]
+
+_data = [ Vector2( 0, 0 ) ]
+
+[sub_resource type="GDScript" id=6]
+
+script/source = "extends Button
+
+# class member variables go here, for example:
+# var a = 2
+# var b = \"textvar\"
+
+func _ready():
+	# Called every time the node is added to the scene.
+	# Initialization here
+	pass
+
+func _on_Button_3_pressed():
+	get_tree().quit()"
+
+[node name="Panel" type="Panel"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 1027.0
+margin/bottom = 598.0
+
+[node name="TextureFrame" type="TextureFrame" parent="."]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 1028.0
+margin/bottom = 594.0
+texture = ExtResource( 1 )
+expand = true
+stretch_mode = 0
+
+[node name="ButtonStart" type="Button" parent="TextureFrame"]
+
+visibility/light_mask = 0
+material/material = SubResource( 2 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 281.0
+margin/top = 146.0
+margin/right = 809.0
+margin/bottom = 229.0
+custom_styles/focus = SubResource( 3 )
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color_disabled = Color( 0, 0, 0, 1 )
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "Jogar"
+flat = false
+script/script = SubResource( 4 )
+
+[node name="Button 3" type="Button" parent="TextureFrame"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 279.0
+margin/top = 367.0
+margin/right = 810.0
+margin/bottom = 439.0
+custom_fonts/font = ExtResource( 2 )
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "Sair"
+icon = SubResource( 5 )
+flat = false
+clip_text = true
+script/script = SubResource( 6 )
+
+[node name="Button" type="Button" parent="TextureFrame"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 281.0
+margin/top = 255.0
+margin/right = 809.0
+margin/bottom = 329.0
+custom_fonts/font = ExtResource( 2 )
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "Configurar"
+flat = false
+
+[connection signal="pressed" from="TextureFrame/ButtonStart" to="TextureFrame/ButtonStart" method="_on_ButtonStart_pressed"]
+
+[connection signal="pressed" from="TextureFrame/Button 3" to="TextureFrame/Button 3" method="_on_Button_3_pressed"]
+
+[connection signal="released" from="TextureFrame/Button 3" to="TextureFrame/Button 3" method="_on_Button_3_released"]
+
+
